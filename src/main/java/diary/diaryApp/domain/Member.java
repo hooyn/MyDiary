@@ -21,10 +21,10 @@ public class Member {
     private int point;
 
     //구매목록 리스트
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Purchase> purchases = new ArrayList<>();
 
     //다이어리 리스트
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Diary> diaries = new ArrayList<>();
 }
