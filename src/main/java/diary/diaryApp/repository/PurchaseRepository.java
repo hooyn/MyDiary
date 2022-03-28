@@ -34,7 +34,7 @@ public class PurchaseRepository {
                 .getResultList();
     }
 
-    public List<Purchase> findAllwithEmail(String email){
+    public List<Purchase> findAllWithEmail(String email){
         return em.createQuery("select p from Purchase  p" +
                  " join p.member m where m.email = :email", Purchase.class)
                 .setParameter("email", email)
