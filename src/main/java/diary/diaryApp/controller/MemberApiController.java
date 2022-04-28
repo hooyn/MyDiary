@@ -6,10 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,7 +36,22 @@ public class MemberApiController {
         member.setPassword(request.password);
 
         Long id = memberService.join(member);
-        return new Result(true, 200, "id:" + id, "통신성공");
+        return new Result(true, 200, id, "통신성공");
+    }
+
+    //멤버 정보 업데이트
+    @PutMapping("/api/members/{id}")
+    public Result updateMember(
+            @PathVariable("id") Long id,
+            @RequestBody UpdateMemberRequest request){
+
+        memberService.update(id, request.getName());
+        Member findMember = memberService.findOne(id);
+        return new Result(
+                true,
+                200,
+                "Id:" + findMember.getId() +"-> " + findMember.getName(),
+                "통신성공");
     }
 
     @Data
@@ -64,5 +76,10 @@ public class MemberApiController {
         private String email;
         private String name;
         private String password;
+    }
+
+    @Data
+    static class UpdateMemberRequest {
+        private String name;
     }
 }
