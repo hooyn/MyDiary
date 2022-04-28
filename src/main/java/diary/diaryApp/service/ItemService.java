@@ -18,8 +18,9 @@ public class ItemService {
      * 아이템 저장
      */
     @Transactional
-    public void saveItem(Item item) {
+    public Long saveItem(Item item) {
         itemRepository.save(item);
+        return item.getId();
     }
 
     /**
