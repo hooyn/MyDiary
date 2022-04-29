@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 public class ItemApiController {
     private final ItemService itemService;
 
+    //아이템 정보 조회
     @GetMapping("/api/items")
     public Result item(){
         List<Item> findItems = itemService.findItems();
@@ -28,6 +29,7 @@ public class ItemApiController {
         return new Result(true, 200, collect, "통신성공");
     }
 
+    //아이템 정보 등록
     @PostMapping("/api/items")
     public Result saveItem(@RequestBody CreateItemRequest request){
         Item item = new Item();
