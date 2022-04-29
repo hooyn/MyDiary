@@ -37,10 +37,10 @@ public class DiaryRepository {
         }
     }
 
-    public List<Diary> findAllWithEmail(String email){
+    public List<Diary> findAllWithId(Long id){
         return em.createQuery("select d from Diary d" +
-                 " join d.member m where m.email = :email", Diary.class)
-                .setParameter("email", email)
+                 " join d.member m where m.id = :id", Diary.class)
+                .setParameter("id", id)
                 .getResultList();
     }
 

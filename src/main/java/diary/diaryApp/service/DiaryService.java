@@ -22,10 +22,7 @@ public class DiaryService {
      * 다이어리 작성
      */
     @Transactional
-    public Long writeDiary(Long memberId, String title, String content){
-        Member member = memberRepository.findOne(memberId);
-
-        Diary diary = Diary.createDiary(member, title, content);
+    public Long writeDiary(Diary diary){
         diaryRepository.save(diary);
 
         return diary.getId();
@@ -55,8 +52,8 @@ public class DiaryService {
      * 이메일에 따른 다이어리 조회
      */
     @Transactional(readOnly = true)
-    public List<Diary> findDiaries(String email){
-        return diaryRepository.findAllWithEmail(email);
+    public List<Diary> findDiaries(Long id){
+        return diaryRepository.findAllWithId(id);
     }
 
     /**
