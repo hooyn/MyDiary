@@ -49,11 +49,19 @@ public class DiaryService {
     //}
 
     /**
-     * 이메일에 따른 다이어리 조회
+     * 아이디에 따른 다이어리 조회
      */
     @Transactional(readOnly = true)
     public List<Diary> findDiaries(Long id){
         return diaryRepository.findAllWithId(id);
+    }
+
+    /**
+     * 다이어리아디에 따른 다이어리 조회
+     */
+    @Transactional(readOnly = true)
+    public Diary findDiary(Long id){
+        return diaryRepository.findOne(id);
     }
 
     /**
