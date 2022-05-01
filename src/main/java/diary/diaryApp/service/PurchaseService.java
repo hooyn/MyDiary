@@ -43,7 +43,7 @@ public class PurchaseService {
         int count = purchase.getCount();
 
         purchase.cancel(count);
-        //purchaseRepository.delete(purchaseId);
+        purchaseRepository.delete(purchaseId);
         //삭제되는 거 테스트 해보기
     }
 
