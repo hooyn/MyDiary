@@ -42,4 +42,11 @@ public class PurchaseRepository {
 
     }
 
+    public List<Purchase> findAllWithId(Long id){
+        return em.createQuery("select p from Purchase  p" +
+                        " join p.member m where m.id = :id", Purchase.class)
+                .setParameter("id", id)
+                .getResultList();
+    }
+
 }

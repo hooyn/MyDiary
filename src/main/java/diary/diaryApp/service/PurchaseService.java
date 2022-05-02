@@ -50,8 +50,15 @@ public class PurchaseService {
     /**
      * 구매 목록 검색(이메일에 해당하는)
      */
-    public List<Purchase> findOrders(String email){
+    public List<Purchase> findPurchases(String email){
         return purchaseRepository.findAllWithEmail(email);
+    }
+
+    /**
+     * 구매 목록 검색(아이디에 해당하는)
+     */
+    public List<Purchase> findPurchasesId(Long id){
+        return purchaseRepository.findAllWithId(id);
     }
 
 }
